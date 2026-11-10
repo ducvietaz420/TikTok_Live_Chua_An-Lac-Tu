@@ -1,0 +1,1075 @@
+{
+  "name": "Chùa ảo",
+  "description": "Người xem thành Phật tử trong chùa: dâng hương, lễ bái, dâng sen theo quà; chat để lạy Phật, xin xăm, thả đèn nguyện.",
+  "width": 1080,
+  "height": 1920,
+  "actions": [
+    {
+      "id": "incense",
+      "label": "Dâng hương",
+      "icon": "assets/cdo/fx_incense.png",
+      "card": "1 xu",
+      "description": "Lên trước đỉnh hương đứng vái, khói bốc, chuông gia trì",
+      "steps": [
+        {
+          "walk": "offer"
+        },
+        {
+          "pose": "stand"
+        },
+        {
+          "js": "giftFocus"
+        },
+        {
+          "play": "offer",
+          "times": "count",
+          "max": 3,
+          "each": [
+            {
+              "sound": "chuong"
+            },
+            {
+              "fx": "emit",
+              "preset": "smoke",
+              "at": "censerMouth",
+              "count": 18,
+              "spread": 4,
+              "spreadY": 2,
+              "life": [1700, 2100],
+              "size": [4, 6],
+              "grow": 0.6,
+              "vy": [-58, -52],
+              "vx": [-3, 3],
+              "sway": 2,
+              "alpha": 0.7,
+              "color": "255,255,255",
+              "strong": false
+            },
+            {
+              "fx": "emit",
+              "preset": "spark",
+              "at": "censerMouth",
+              "count": 6,
+              "spread": 14
+            }
+          ]
+        },
+        {
+          "fx": "text",
+          "at": "head",
+          "text": "+{total} công đức"
+        },
+        {
+          "walk": "home"
+        },
+        {
+          "pose": "idle"
+        }
+      ],
+      "offering": "Nén hương"
+    },
+    {
+      "id": "bow",
+      "label": "Lễ bái",
+      "icon": "assets/cdo/fx_bell.png",
+      "card": "5 xu",
+      "description": "Quỳ giữa thảm lạy 3 lạy, vầng sáng quanh người",
+      "steps": [
+        {
+          "walk": "bow"
+        },
+        {
+          "pose": "idle"
+        },
+        {
+          "js": "giftFocus"
+        },
+        {
+          "aura": 1
+        },
+        {
+          "sound": "chuong"
+        },
+        {
+          "play": "bow",
+          "times": 3,
+          "each": [
+            {
+              "sound": "mo"
+            },
+            {
+              "aura": 1
+            },
+            {
+              "fx": "emit",
+              "preset": "spark",
+              "at": "head",
+              "count": 12
+            }
+          ]
+        },
+        {
+          "fx": "text",
+          "at": "head",
+          "text": "+{total} công đức"
+        },
+        {
+          "walk": "home"
+        },
+        {
+          "pose": "idle"
+        }
+      ],
+      "offering": "Lễ bái"
+    },
+    {
+      "id": "lotus",
+      "label": "Dâng sen",
+      "icon": "assets/cdo/fx_lotus.png",
+      "card": "10 xu",
+      "description": "Cột sáng chiếu xuống người dâng, sen bay lên bàn thờ, mưa cánh sen",
+      "steps": [
+        {
+          "js": "giftFocus"
+        },
+        {
+          "fx": "pillar",
+          "at": "person",
+          "color": "255,230,160",
+          "duration": 2600
+        },
+        {
+          "aura": 1
+        },
+        {
+          "fx": "fly",
+          "what": "assets/cdo/fx_lotus.png",
+          "from": "head",
+          "to": "altar",
+          "count": "count",
+          "max": 10
+        },
+        {
+          "sound": "sen"
+        },
+        {
+          "fx": "rain",
+          "preset": "petal",
+          "count": 40
+        },
+        {
+          "play": "bow",
+          "times": 3
+        },
+        {
+          "fx": "text",
+          "at": "head",
+          "text": "+{total} công đức"
+        }
+      ],
+      "offering": "Đóa sen"
+    },
+    {
+      "id": "grand",
+      "label": "Đại lễ",
+      "icon": "assets/fx/halo.png",
+      "description": "Tượng Phật toả hào quang, tia sáng khắp điện, cả điện cùng lạy, chuông lớn",
+      "steps": [
+        {
+          "js": "giftFocus"
+        },
+        {
+          "fx": "halo",
+          "at": "focus",
+          "radius": 320,
+          "duration": 4500,
+          "image": "assets/fx/halo.png"
+        },
+        {
+          "fx": "rays",
+          "at": "focus",
+          "image": "assets/fx/rays.png"
+        },
+        {
+          "sound": "chuong-lon"
+        },
+        {
+          "fx": "fly",
+          "what": "assets/cdo/fx_lotus.png",
+          "from": "head",
+          "to": "altar",
+          "count": 10
+        },
+        {
+          "fx": "rain",
+          "preset": "petal",
+          "count": 90,
+          "image": "assets/cdo/fx_petal.png",
+          "scale": 1.6
+        },
+        {
+          "crowd": [
+            {
+              "play": "bow",
+              "times": 3
+            }
+          ]
+        }
+      ],
+      "offering": "Đại lễ",
+      "card": "100 xu"
+    },
+    {
+      "id": "pray",
+      "label": "Lạy Phật",
+      "icon": "🙇",
+      "description": "Lạy 3 lạy ngay chỗ quỳ, mõ theo từng lạy",
+      "steps": [
+        {
+          "play": "bow",
+          "times": 3,
+          "each": [
+            {
+              "sound": "mo",
+              "volume": 0.5
+            },
+            {
+              "fx": "emit",
+              "preset": "spark",
+              "at": "head",
+              "count": 4
+            }
+          ]
+        },
+        {
+          "fx": "text",
+          "at": "head",
+          "text": "🙏",
+          "size": 30
+        }
+      ]
+    },
+    {
+      "id": "xam",
+      "label": "Xin xăm",
+      "icon": "🎋",
+      "description": "Lên quỳ trước bàn thờ, lắc ống xăm, rút một quẻ (mỗi người mỗi ngày một quẻ)",
+      "steps": [
+        {
+          "walk": "bow"
+        },
+        {
+          "pose": "idle"
+        },
+        {
+          "play": "bow",
+          "times": 1
+        },
+        {
+          "play": "xam",
+          "times": 3,
+          "each": [
+            {
+              "sound": "mo",
+              "volume": 0.35
+            }
+          ]
+        },
+        {
+          "fx": "emit",
+          "preset": "star",
+          "at": "head",
+          "count": 12
+        },
+        {
+          "wait": 2600
+        },
+        {
+          "walk": "home"
+        },
+        {
+          "pose": "idle"
+        }
+      ]
+    },
+    {
+      "id": "cau",
+      "label": "Thả đèn nguyện",
+      "icon": "🏮",
+      "description": "Lời cầu của người xem thành ngọn đèn sen bay lên điện",
+      "steps": [
+        {
+          "play": "bow",
+          "times": 1
+        },
+        {
+          "js": "lantern"
+        },
+        {
+          "aura": 0.6
+        }
+      ]
+    }
+  ],
+  "rules": {
+    "joinMode": "all",
+    "joinKeywords": [
+      "a di đà phật",
+      "nam mô"
+    ],
+    "bigGiftCoins": 100,
+    "giftTiers": [
+      {
+        "minCoins": 1,
+        "action": "incense",
+        "label": "Dâng hương"
+      },
+      {
+        "minCoins": 5,
+        "action": "bow",
+        "label": "Lễ bái"
+      },
+      {
+        "minCoins": 10,
+        "action": "lotus",
+        "label": "Dâng sen"
+      },
+      {
+        "minCoins": 100,
+        "action": "grand",
+        "label": "Đại lễ"
+      }
+    ],
+    "giftOverrides": [],
+    "chatCommands": [
+      {
+        "keywords": [
+          "xin xăm",
+          "gieo quẻ",
+          "xin quẻ",
+          "rút quẻ",
+          "bốc quẻ",
+          "xin keo"
+        ],
+        "match": "contains",
+        "action": "xam",
+        "draw": "xam",
+        "label": "gieo quẻ",
+        "cooldownMs": 30000
+      },
+      {
+        "keywords": [
+          "lạy Phật",
+          "con lạy",
+          "lạy người",
+          "lạy Bồ Tát",
+          "lạy Quan Âm",
+          "nam mô",
+          "a di đà",
+          "mô Phật",
+          "🙏"
+        ],
+        "match": "contains",
+        "action": "pray",
+        "label": "lễ Phật",
+        "cooldownMs": 8000
+      },
+      {
+        "keywords": [
+          "lạy",
+          "lạy lạy"
+        ],
+        "match": "exact",
+        "action": "pray",
+        "label": "lễ Phật",
+        "cooldownMs": 8000
+      },
+      {
+        "keywords": [
+          "cầu an",
+          "cầu cho",
+          "cầu mong",
+          "cầu nguyện",
+          "nguyện cầu",
+          "cầu bình an",
+          "cầu sức khoẻ",
+          "cầu tài lộc"
+        ],
+        "match": "contains",
+        "action": "cau",
+        "label": "thả đèn",
+        "cooldownMs": 20000
+      }
+    ]
+  },
+  "bigGift": {
+    "steps": [
+      {
+        "fx": "halo",
+        "at": "head",
+        "radius": 160,
+        "image": "assets/fx/halo.png"
+      },
+      {
+        "spotlight": true,
+        "color": "255,226,160"
+      },
+      {
+        "boost": 1.3,
+        "duration": 4000
+      }
+    ]
+  },
+  "settings": [
+    {
+      "id": "cameraFx",
+      "label": "Camera zoom vào người tặng quà",
+      "type": "toggle",
+      "default": true
+    }
+  ],
+  "reactions": {
+    "like": [
+      {
+        "fx": "emit",
+        "preset": "heart",
+        "at": "head",
+        "count": "likes"
+      },
+      {
+        "sound": "mo",
+        "volume": 0.7
+      },
+      {
+        "fx": "text",
+        "at": "head",
+        "text": "+1 công đức",
+        "size": 24
+      }
+    ],
+    "title": [
+      {
+        "aura": 1
+      },
+      {
+        "fx": "emit",
+        "preset": "star",
+        "at": "head",
+        "count": 18
+      },
+      {
+        "toast": "Hoan hỷ {ten} thăng bậc mới"
+      }
+    ],
+    "goal": [
+      {
+        "fx": "rays",
+        "at": "focus",
+        "image": "assets/fx/rays.png"
+      },
+      {
+        "fx": "rain",
+        "preset": "petal",
+        "count": 60
+      },
+      {
+        "sound": "chuong-lon"
+      }
+    ],
+    "chat": [
+      {
+        "play": "nod"
+      }
+    ]
+  },
+  "characters": [
+    {
+      "id": "phattu",
+      "label": "Phật tử",
+      "sheet": "assets/chars/devotee.png",
+      "frames": 32,
+      "walk": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "walkUp": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "walkDown": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "walkSide": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "poses": {
+        "idle": 16,
+        "handsUp": 17,
+        "stand": 24,
+        "sitDown": 25,
+        "incense": 26,
+        "offer": 27,
+        "xam": 29,
+        "xam2": 30,
+        "xam3": 31
+      },
+      "weight": 1
+    },
+    {
+      "id": "monk-left",
+      "label": "Sư thầy bên trái",
+      "sheet": "assets/chars/monk-left.png",
+      "frames": 1,
+      "poses": { "idle": 0 },
+      "weight": 0
+    },
+    {
+      "id": "monk-right",
+      "label": "Sư thầy bên phải",
+      "sheet": "assets/chars/monk-right.png",
+      "frames": 1,
+      "poses": { "idle": 0 },
+      "weight": 0
+    }
+  ],
+  "animations": {
+    "bow": {
+      "frames": [
+        "idle",
+        "handsUp",
+        "handsUp",
+        "idle",
+        "idle@0.86",
+        "idle@0.74",
+        "idle@0.74",
+        "idle@0.86",
+        "idle"
+      ],
+      "ms": 2400
+    },
+    "offer": {
+      "frames": [
+        "stand",
+        "incense",
+        "offer",
+        "offer",
+        "incense",
+        "stand"
+      ],
+      "ms": 1800
+    },
+    "nod": {
+      "frames": [
+        "idle",
+        "idle@0.88",
+        "idle@0.8",
+        "idle@0.88",
+        "idle"
+      ],
+      "ms": 1000
+    },
+    "xam": {
+      "frames": [
+        "xam",
+        "xam2",
+        "xam3",
+        "xam2"
+      ],
+      "ms": 560
+    }
+  },
+  "npcs": [
+    {
+      "id": "monk-left",
+      "character": "monk-left",
+      "at": [265, 880],
+      "scale": 1.5,
+      "showName": false,
+      "cushion": true
+    },
+    {
+      "id": "monk-right",
+      "character": "monk-right",
+      "at": [815, 880],
+      "scale": 1.5,
+      "showName": false,
+      "cushion": true
+    }
+  ],
+  "titles": [
+    {
+      "minCoins": 0,
+      "label": "Phật tử"
+    },
+    {
+      "minCoins": 30,
+      "label": "Thiện tín"
+    },
+    {
+      "minCoins": 200,
+      "label": "Hộ pháp",
+      "aura": 0.45
+    },
+    {
+      "minCoins": 1000,
+      "label": "Đại thí chủ",
+      "aura": 0.9
+    }
+  ],
+  "goals": [
+    {
+      "id": "likes",
+      "metric": "likes",
+      "label": "Tim gửi Phật",
+      "every": 1000
+    },
+    {
+      "id": "coins",
+      "metric": "coins",
+      "label": "Công đức",
+      "every": 500
+    }
+  ],
+  "voice": {
+    "enabled": true,
+    "voice": "vi-VN-NamMinhNeural",
+    "giftMinCoins": 1,
+    "gift": [
+      "Nam mô A Di Đà Phật. Thí chủ {ten} {hanh_dong}{lan}. {loi}."
+    ],
+    "bigGift": [
+      "Nam mô A Di Đà Phật. Thí chủ {ten} phát tâm {hanh_dong}{lan}. {loi}. Nguyện công đức này lan khắp muôn nơi."
+    ],
+    "follow": [
+      "Cảm ơn Phật tử {ten} đã theo dõi."
+    ],
+    "title": [
+      "Hoan hỷ Phật tử {ten} nay là {danh_hieu}."
+    ],
+    "goal": [
+      "Đại chúng đã cùng nhau gom đủ {gia_tri} {muc_tieu}. Nam mô A Di Đà Phật."
+    ],
+    "fallbackWords": [
+      "Nguyện cầu gia đạo bình an, vạn sự cát tường",
+      "Nguyện cầu cha mẹ mạnh khỏe, sống lâu",
+      "Nguyện cầu thân tâm an lạc, phiền não tiêu trừ",
+      "Nguyện cầu công việc hanh thông, gia đình hạnh phúc"
+    ],
+    "draw": [
+      "Quẻ số {so}, {loai}. {tho}."
+    ],
+    "drawAgain": [
+      "Phật tử {ten} hôm nay đã xin quẻ số {so}, {loai}. Mỗi ngày một quẻ, mai hãy xin tiếp."
+    ],
+    "join": [
+      "A Di Đà Phật, chào mừng {ten} đã vào chùa.",
+      "Chào {ten}. Gõ xin xăm để gieo quẻ đầu ngày nhé.",
+      "Phật tử {ten} vừa vào chùa. Mời {ten} thả tim gõ mõ tích phúc."
+    ],
+    "chat": [
+      "{ten} nhắn: {chat}.",
+      "Phật tử {ten} nói: {chat}."
+    ],
+    "command:cau": [
+      "Phật tử {ten} cầu nguyện: {loi}. Nguyện lời cầu được thành tựu."
+    ],
+    "command:pray": [
+      "Phật tử {ten} thành tâm lễ Phật.",
+      "A Di Đà Phật, {ten} đang lễ Phật."
+    ],
+    "cooldown": {
+      "join": 18000,
+      "chat": 10000,
+      "command:pray": 15000,
+      "command:cau": 5000
+    },
+    "delay": {
+      "draw": 2300
+    }
+  },
+  "periodic": {
+    "everyMinutes": 3,
+    "quietSeconds": 0,
+    "title": "THỜI KINH",
+    "items": [
+      "Nam mô Bổn Sư Thích Ca Mâu Ni Phật. Nguyện đem công đức này, hướng về khắp tất cả, đệ tử và chúng sanh, đều trọn thành Phật đạo.",
+      "Nam mô A Di Đà Phật. Nguyện sanh Tây Phương Tịnh Độ trung, cửu phẩm liên hoa vi phụ mẫu.",
+      "Nam mô Đại Bi Quán Thế Âm Bồ Tát. Nguyện cho tất cả chúng sanh thân tâm an lạc, tai qua nạn khỏi.",
+      "Quán Tự Tại Bồ Tát hành thâm Bát Nhã Ba La Mật Đa thời, chiếu kiến ngũ uẩn giai không, độ nhất thiết khổ ách."
+    ]
+  },
+  "hud": {
+    "safeTop": 100,
+    "plaque": {
+      "text": "AN LẠC TỰ",
+      "sub": "Tâm an · vạn sự lành"
+    },
+    "guide": {
+      "title": "CÁCH CHƠI"
+    },
+    "board": {
+      "title": "BẢNG VÀNG",
+      "size": 3
+    },
+    "tray": {
+      "title": "LỄ PHẨM"
+    },
+    "giftCard": {
+      "verb": "kính dâng",
+      "unit": "công đức",
+      "top": 1180
+    },
+    "drawTop": 1360,
+    "periodicTop": 800,
+    "toastTop": 1010
+  },
+  "colors": {
+    "accent": "#ffd987",
+    "border": "rgba(214,168,82,.75)",
+    "panel": "linear-gradient(180deg, rgba(40,18,6,.86), rgba(20,8,2,.9))",
+    "glow": "rgba(255,200,90,.7)"
+  },
+  "sounds": {
+    "chuong": {
+      "cooldown": 3000,
+      "duck": 0.7
+    },
+    "chuong-lon": {
+      "cooldown": 20000,
+      "duck": 0.35,
+      "priority": true
+    },
+    "mo": {
+      "cooldown": 550,
+      "vary": 0.06
+    },
+    "sen": {
+      "cooldown": 4000
+    },
+    "like": false
+  },
+  "text": {},
+  "draws": {
+    "xam": {
+      "perDay": true,
+      "items": [
+        {
+          "so": 1,
+          "loai": "Thượng cát",
+          "tho": [
+            "Xuân về hoa nở đầy cành",
+            "Lòng ngay gặp được duyên lành bên ta"
+          ],
+          "loi": "Việc đang mong sắp thành, cứ giữ lòng ngay thẳng."
+        },
+        {
+          "so": 2,
+          "loai": "Trung cát",
+          "tho": [
+            "Thuyền xuôi gió thuận sông dài",
+            "Chậm mà chắc bước, ngày mai tới bờ"
+          ],
+          "loi": "Đừng vội, làm đều tay thì việc sẽ tới."
+        },
+        {
+          "so": 3,
+          "loai": "Tiểu cát",
+          "tho": [
+            "Mây che trăng chẳng bao lâu",
+            "Gió đưa mây tản, trăng đâu lại về"
+          ],
+          "loi": "Chuyện buồn sắp qua, kiên nhẫn thêm ít hôm."
+        },
+        {
+          "so": 4,
+          "loai": "Thượng cát",
+          "tho": [
+            "Cây ngay vững gốc bền lâu",
+            "Gieo nhân hiền hậu, quả sau ngọt bùi"
+          ],
+          "loi": "Việc tốt đã làm sắp được đền đáp."
+        },
+        {
+          "so": 5,
+          "loai": "Bình an",
+          "tho": [
+            "Đường xa chớ ngại gian nan",
+            "Một lòng bền chí, muôn vàn cũng qua"
+          ],
+          "loi": "Việc còn vất vả, nhưng bền bỉ sẽ vượt qua."
+        },
+        {
+          "so": 6,
+          "loai": "Trung cát",
+          "tho": [
+            "Nhà êm cửa ấm sum vầy",
+            "Mẹ cha mạnh khoẻ, tháng ngày bình an"
+          ],
+          "loi": "Gia đạo yên vui, nên dành thêm thời gian cho người nhà."
+        },
+        {
+          "so": 7,
+          "loai": "Tiểu cát",
+          "tho": [
+            "Hạt mưa nhỏ thấm đất khô",
+            "Góp từng chút một, cơ đồ dựng nên"
+          ],
+          "loi": "Tiền bạc đến từ từ, chịu khó tích góp sẽ khá dần."
+        },
+        {
+          "so": 8,
+          "loai": "Thượng cát",
+          "tho": [
+            "Rồng mây gặp hội đúng thời",
+            "Công danh rộng mở, một đời hanh thông"
+          ],
+          "loi": "Thời cơ công việc đang tới, mạnh dạn nắm lấy."
+        },
+        {
+          "so": 9,
+          "loai": "Bình an",
+          "tho": [
+            "Lặng nhìn mặt nước hồ thu",
+            "Tâm yên sóng lặng, mây mù cũng tan"
+          ],
+          "loi": "Bớt lo nghĩ, tâm an thì mọi việc sáng ra."
+        },
+        {
+          "so": 10,
+          "loai": "Trung cát",
+          "tho": [
+            "Bạn hiền như ngọc giữa đường",
+            "Gặp người tri kỷ, yêu thương vẹn tròn"
+          ],
+          "loi": "Sắp gặp người tốt giúp mình, nhớ giữ chữ tín."
+        },
+        {
+          "so": 11,
+          "loai": "Thượng cát",
+          "tho": [
+            "Hoa sen nở giữa đầm xanh",
+            "Gần bùn chẳng nhuốm, tiếng thanh muôn đời"
+          ],
+          "loi": "Giữ mình trong sạch, người đời sẽ quý trọng."
+        },
+        {
+          "so": 12,
+          "loai": "Tiểu cát",
+          "tho": [
+            "Trăng non rồi cũng tròn đầy",
+            "Việc nay còn nhỏ, mai này sẽ nên"
+          ],
+          "loi": "Khởi đầu nhỏ nhưng có tương lai, cứ vun đắp."
+        },
+        {
+          "so": 13,
+          "loai": "Trung cát",
+          "tho": [
+            "Ra khơi gặp gió thuận buồm",
+            "Lưới đầy cá bạc, cội nguồn ấm no"
+          ],
+          "loi": "Làm ăn có lộc, nhớ chia sẻ với người thân."
+        },
+        {
+          "so": 14,
+          "loai": "Bình an",
+          "tho": [
+            "Gió lay chẳng đổ cây tùng",
+            "Giữ lòng vững chãi, vô cùng bình yên"
+          ],
+          "loi": "Có người nói ra nói vào, cứ vững vàng là được."
+        },
+        {
+          "so": 15,
+          "loai": "Thượng cát",
+          "tho": [
+            "Đèn nhang sáng tỏ bàn thờ",
+            "Ông bà phù hộ, ước mơ được tròn"
+          ],
+          "loi": "Điều ước chính đáng sẽ thành, nhớ thắp nén hương tạ ơn."
+        },
+        {
+          "so": 16,
+          "loai": "Tiểu cát",
+          "tho": [
+            "Mưa rào rồi lại nắng lên",
+            "Buồn vui là lẽ, chớ quên nụ cười"
+          ],
+          "loi": "Chuyện không vui chỉ thoáng qua, giữ tinh thần lạc quan."
+        },
+        {
+          "so": 17,
+          "loai": "Trung cát",
+          "tho": [
+            "Ngựa hay chạy giữa đường bằng",
+            "Đi xa bình yên, lộc tăng theo về"
+          ],
+          "loi": "Đi lại, xuất hành đều thuận lợi."
+        },
+        {
+          "so": 18,
+          "loai": "Thượng cát",
+          "tho": [
+            "Trời cao rộng mở cửa son",
+            "Học hành đỗ đạt, vuông tròn ước mong"
+          ],
+          "loi": "Thi cử, học hành gặp may, chăm thêm chút nữa."
+        },
+        {
+          "so": 19,
+          "loai": "Bình an",
+          "tho": [
+            "Nước chảy đá cũng mòn dần",
+            "Siêng năng từng bước, xa gần đều qua"
+          ],
+          "loi": "Chưa có kết quả ngay, siêng năng là chìa khoá."
+        },
+        {
+          "so": 20,
+          "loai": "Trung cát",
+          "tho": [
+            "Tơ hồng ai buộc chân ai",
+            "Duyên lành đã định, sớm mai sẽ gần"
+          ],
+          "loi": "Chuyện tình duyên có tin vui, hãy mở lòng."
+        },
+        {
+          "so": 21,
+          "loai": "Tiểu cát",
+          "tho": [
+            "Bếp hồng lửa ấm đêm đông",
+            "Chung tay góp sức, mặn nồng sớm hôm"
+          ],
+          "loi": "Gia đình nhường nhịn nhau thì mọi việc êm."
+        },
+        {
+          "so": 22,
+          "loai": "Thượng cát",
+          "tho": [
+            "Chuông ngân vọng khắp non cao",
+            "Phúc lành tìm tới, dồi dào bình an"
+          ],
+          "loi": "Quẻ rất tốt, sức khoẻ và tài lộc đều vượng."
+        },
+        {
+          "so": 23,
+          "loai": "Bình an",
+          "tho": [
+            "Lá rơi về cội mùa thu",
+            "Nhớ ơn nguồn cội, đường tu sáng ngời"
+          ],
+          "loi": "Nên về thăm nhà, hỏi han cha mẹ ông bà."
+        },
+        {
+          "so": 24,
+          "loai": "Trung cát",
+          "tho": [
+            "Hạt giống gieo xuống đất lành",
+            "Đủ mưa đủ nắng, lớn nhanh xanh cành"
+          ],
+          "loi": "Dự định mới có nền tảng tốt, bắt tay làm được rồi."
+        },
+        {
+          "so": 25,
+          "loai": "Tiểu cát",
+          "tho": [
+            "Sương tan nắng sớm lên đồi",
+            "Tối qua dù lạnh, sáng rồi ấm êm"
+          ],
+          "loi": "Sức khoẻ đang hồi phục, nghỉ ngơi điều độ."
+        },
+        {
+          "so": 26,
+          "loai": "Thượng cát",
+          "tho": [
+            "Kim vàng gặp được tay hay",
+            "Tài năng toả sáng, từ nay nên danh"
+          ],
+          "loi": "Có người nhận ra tài của mình, hãy tự tin."
+        },
+        {
+          "so": 27,
+          "loai": "Bình an",
+          "tho": [
+            "Ngồi yên nghe tiếng mõ đều",
+            "Bớt ham bớt giận, phúc nhiều thêm ra"
+          ],
+          "loi": "Nhẫn một chút thì mọi việc thuận."
+        },
+        {
+          "so": 28,
+          "loai": "Trung cát",
+          "tho": [
+            "Cánh diều no gió bay cao",
+            "Ước mơ vươn tới, ngọt ngào thành công"
+          ],
+          "loi": "Mục tiêu đang tới gần, giữ nhịp như hiện tại."
+        },
+        {
+          "so": 29,
+          "loai": "Tiểu cát",
+          "tho": [
+            "Cửa nhà quét sạch bụi trần",
+            "Lòng thanh tịnh lại, phúc phần thêm tươi"
+          ],
+          "loi": "Dọn dẹp nhà cửa và lòng mình, may mắn sẽ tới."
+        },
+        {
+          "so": 30,
+          "loai": "Thượng cát",
+          "tho": [
+            "Trăm hoa đua nở sân chùa",
+            "Tâm lành gặp phúc, được mùa an vui"
+          ],
+          "loi": "Mọi mặt đều sáng sủa, nhớ làm việc thiện."
+        },
+        {
+          "so": 31,
+          "loai": "Bình an",
+          "tho": [
+            "Đò ngang chờ khách bến sông",
+            "Đợi thời chưa tới, chớ mong vội vàng"
+          ],
+          "loi": "Chưa phải lúc, đợi thêm ít lâu rồi hãy quyết."
+        },
+        {
+          "so": 32,
+          "loai": "Trung cát",
+          "tho": [
+            "Tay trao chén nước ân tình",
+            "Giúp người hôm trước, mai mình được thương"
+          ],
+          "loi": "Giúp đỡ người khác sẽ được đền đáp bằng tình thân."
+        }
+      ]
+    }
+  },
+  "prompts": {
+    "everySeconds": 90,
+    "quietSeconds": 25,
+    "items": [
+      "Ai muốn xem quẻ hôm nay thì gõ xin xăm nhé.",
+      "Thả tim để gõ mõ tích phúc cho cả chùa.",
+      "Gõ cầu an kèm lời nguyện để thả một ngọn đèn sen.",
+      "Gõ lạy Phật để cùng lễ Phật nhé."
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Ảnh đại diện An Lạc Tự</title>
+<!-- Mở file này trong trình duyệt khung 1024 x 1024 rồi chụp. Thêm ?text vào đường dẫn để có chữ chạy vòng. -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800;900&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: #111; }
+  svg { display: block; width: 1024px; height: 1024px; }
+</style>
+</head>
+<body>
+<svg id="logo" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="lac" cx="50%" cy="42%" r="62%">
+      <stop offset="0" stop-color="#a8291c"/>
+      <stop offset=".55" stop-color="#7d1610"/>
+      <stop offset="1" stop-color="#3e0804"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff4cc"/>
+      <stop offset=".45" stop-color="#ecc56c"/>
+      <stop offset="1" stop-color="#a3701f"/>
+    </linearGradient>
+    <linearGradient id="goldDeep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3d58c"/>
+      <stop offset="1" stop-color="#8f5e18"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff1c1"/>
+      <stop offset=".5" stop-color="#d6aa52"/>
+      <stop offset="1" stop-color="#8f5e18"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffe7a8" stop-opacity=".75"/>
+      <stop offset=".45" stop-color="#ffcf6e" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#ffcf6e" stop-opacity="0"/>
+    </radialGradient>
+    <path id="arc" d="M 512 512 m -372 0 a 372 372 0 1 0 744 0"/>
+  </defs>
+
+  <!-- nền sơn son và viền thếp vàng (nằm trong vòng cắt tròn của TikTok) -->
+  <circle cx="512" cy="512" r="512" fill="#3e0804"/>
+  <circle cx="512" cy="512" r="500" fill="url(#lac)"/>
+  <circle cx="512" cy="512" r="492" fill="none" stroke="url(#ring)" stroke-width="14"/>
+  <circle cx="512" cy="512" r="470" fill="none" stroke="#e8c06a" stroke-width="2" opacity=".7"/>
+  <g id="dots"></g>
+
+  <!-- vầng sáng và tia sáng sau hoa sen -->
+  <circle cx="512" cy="470" r="330" fill="url(#glow)"/>
+  <g id="rays" stroke="#ffe3a0" stroke-linecap="round" opacity=".55"></g>
+  <circle cx="512" cy="470" r="250" fill="none" stroke="#f3d58c" stroke-width="3" opacity=".55"/>
+
+  <!-- hoa sen -->
+  <g transform="translate(512 640) scale(1.1) translate(-512 -640)"><g id="lotus" stroke="#6e3f0c" stroke-width="2.5" stroke-linejoin="round"></g></g>
+
+  <g id="label" style="display:none">
+    <text font-family="'Playfair Display', Georgia, serif" font-weight="900" font-size="64" letter-spacing="14" fill="url(#ring)">
+      <textPath href="#arc" startOffset="50%" text-anchor="middle">AN LẠC TỰ</textPath>
+    </text>
+  </g>
+</svg>
+<script>
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
+  const BX = 512, BY = 640; // gốc hoa sen
+
+  // cánh sen mũi nhọn, gốc tại (0,0), dài L, rộng W
+  const petal = (L, W) => `M0,0 C${W},${-L * 0.3} ${W * 0.72},${-L * 0.82} 0,${-L} C${-W * 0.72},${-L * 0.82} ${-W},${-L * 0.3} 0,0 Z`;
+  const lotus = document.getElementById('lotus');
+  const layer = (angles, L, W, fill, sy = 1) => angles.forEach((a) => {
+    const g = el('g', { transform: `translate(${BX},${BY}) rotate(${a}) scale(1,${sy})` }, lotus);
+    el('path', { d: petal(L, W), fill }, g);
+    el('path', { d: `M0,${-L * 0.08} L0,${-L * 0.86}`, stroke: '#b98a3a', 'stroke-width': 2, opacity: 0.6, fill: 'none' }, g);
+  });
+  layer([-78, 78], 250, 78, 'url(#goldDeep)', 0.82);       // hai cánh ngoài cùng, ngả thấp
+  layer([-52, 52], 300, 92, 'url(#goldDeep)');
+  layer([-27, 27], 330, 98, 'url(#gold)');
+  layer([0], 360, 104, 'url(#gold)');
+  layer([-14, 14], 260, 80, 'url(#gold)');                  // lớp cánh trước, ôm đài sen
+  // đài sen và lá sen phía dưới
+  el('ellipse', { cx: BX, cy: BY + 6, rx: 150, ry: 26, fill: 'url(#goldDeep)' }, lotus);
+  el('path', { d: `M${BX - 270},${BY + 40} Q${BX},${BY + 120} ${BX + 270},${BY + 40} Q${BX},${BY + 82} ${BX - 270},${BY + 40} Z`, fill: 'url(#gold)' }, lotus);
+  el('path', { d: `M${BX - 200},${BY + 92} Q${BX},${BY + 150} ${BX + 200},${BY + 92}`, fill: 'none', stroke: '#e8c06a', 'stroke-width': 6, 'stroke-linecap': 'round', opacity: 0.8 }, lotus);
+
+  // tia sáng
+  const rays = document.getElementById('rays');
+  for (let i = 0; i <= 14; i++) { // chỉ toả nửa trên, phía dưới để thoáng cho lá sen và chữ
+    const a = Math.PI + (i / 14) * Math.PI, r1 = 270, r2 = i % 2 ? 320 : 350;
+    el('line', { x1: BX + Math.cos(a) * r1, y1: 470 + Math.sin(a) * r1, x2: BX + Math.cos(a) * r2, y2: 470 + Math.sin(a) * r2, 'stroke-width': i % 2 ? 3 : 5 }, rays);
+  }
+  // hạt vàng trên viền
+  const dots = document.getElementById('dots');
+  for (let i = 0; i < 36; i++) {
+    const a = (i / 36) * Math.PI * 2;
+    el('circle', { cx: 512 + Math.cos(a) * 481, cy: 512 + Math.sin(a) * 481, r: 3.2, fill: '#f3d58c', opacity: 0.8 }, dots);
+  }
+  if (new URLSearchParams(location.search).has('text')) document.getElementById('label').style.display = '';
+</script>
+</body>
+</html>
